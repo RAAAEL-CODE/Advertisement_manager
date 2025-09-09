@@ -2,7 +2,7 @@ from nicegui import ui
 
 def show_add_event_page():
     
-    ui.label ('EDIT EVENT').classes('text-bold text-3xl tracking-wider items-center')
+    ui.label ('CREATE A NEW ADVERT').classes('text-bold text-3xl tracking-wider items-center')
     Title=ui.input('Title').props('outlined').classes('w-1/2 items-center')
     Description=ui.textarea('Item Description').props('outlined').classes('w-1/2 items-center')
     Price=ui.number('Price').props('outlined').classes('w-1/2 items-center')
