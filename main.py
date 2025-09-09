@@ -7,6 +7,7 @@ from pages.view_event import show_view_page
 
 app.add_static_files("/Assets", "Assets")
 
+
 @ui.page("/")
 def home_page():
     show_header()
