@@ -24,6 +24,7 @@ def view_event_page():
 
 @ui.page("/edit_event")
 def edit_event_page():
+    show_header()
     show_edit_event_page()
 
     
