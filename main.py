@@ -19,7 +19,11 @@ def add_event_page():
 @ui.page("/view_event")
 def view_event_page():
     show_header()
-    show_view_event_page()
+    show_view_page()
+    
+@ui.page("/edit_event")
+def edit_event_page():
+    show_edit_event_page()
 
     
 
