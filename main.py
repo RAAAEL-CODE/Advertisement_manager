@@ -5,6 +5,7 @@ from pages.add_event import show_add_event_page
 from pages.edit_event import show_edit_event_page
 from pages.view_event import show_view_page
 
+
 app.add_static_files("/Assets", "Assets")
 
 
