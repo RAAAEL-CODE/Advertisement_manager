@@ -1,7 +1,7 @@
 from nicegui import ui 
 
 def show_edit_event_page():
-    with ui.column().classes('max-w-2xl mx-auto rounded-lg shadow-xl w-full'):
+    with ui.column().classes('max-w-2xl mx-auto rounded-lg shadow-xl w-full mt-24'):
         ui.label ('EDIT ADVERT').classes('text-bold mb-6  text-3xl tracking-wider text-center self-center')
         ui.input('Title').props('outlined').classes('w-full')
         ui.textarea('Item Description').props('outlined').classes('w-full')
