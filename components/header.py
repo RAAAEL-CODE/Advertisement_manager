@@ -2,7 +2,7 @@ from nicegui import ui
 
 def show_header():
     with ui.row().classes(
-        "fixed top-0 left-0 w-full justify-between items-center px-8 py-4 bg-opacity-40 text-white shadow-md z-50"
+        "fixed top-0 left-0 w-full justify-between items-center px-8 py-4 bg-black text-white shadow-md z-50"
     ):
         # Logo / App name
         ui.image("Assets/Black & White Minimalist Business Logo.jpeg").classes("w-[100px] h-[70]")
