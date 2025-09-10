@@ -1,7 +1,8 @@
 from nicegui import ui 
        
 def show_home_page():
-   with ui.grid(columns=3).classes("w-screen h-screen justify-center p-8 gap-12 mx-8 items-start"):
+
+     with ui.grid(columns=3).classes("w-screen h-screen justify-center p-8 gap-12 mx-8 items-start"):
         with ui.column().classes("w-72 items-center"):
             ui.image("Assets/furniture-5966893_1280.jpg").classes("w-[400px] h-1/2 rounded-lg shadow-xl transition-transform duration-300 hover:scale-110")
             ui.label("single sofa").classes("mt-4 text-4xl font-semibold")
