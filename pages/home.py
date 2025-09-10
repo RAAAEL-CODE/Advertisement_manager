@@ -1,10 +1,11 @@
-from nicegui import ui 
+from nicegui import ui
+
        
 def show_home_page():
     with ui.grid(columns=3).classes("w-screen h-screen justify-center p-8 gap-12 mx-8 items-start"):
         with ui.column().classes("w-72 items-center"):
             ui.image("Assets/furniture-5966893_1280.jpg").classes("w-[400px] h-1/2 rounded-lg shadow-xl transition-transform duration-300 hover:scale-110")
-            ui.label("single sofa").classes("mt-4 text-4xl font-semibold")
+            ui.label("Single Sofa").classes("mt-4 text-4xl font-semibold")
             ui.label("price:ghc 1000").classes("text-gray-700 text-xl shadow-xl")
             url = 'http://127.0.0.1:8080/view_event'
             ui.button('view', on_click=lambda: ui.navigate.to(url))
@@ -43,7 +44,7 @@ def show_home_page():
     
         with ui.column().classes("w-72 items-center"):
             ui.image("Assets/vehicle-2132360_1280.jpg").classes("w-[400px] h-1/2 rounded-lg shadow-xl transition-transform duration-300 hover:scale-110")
-            ui.label("1987 Vintage car").classes("mt-4 text-4xl font-semibold")
+            ui.label("1987 Vintage car").classes("mt-4 text-4xl font-semibold") 
             ui.label("price:ghc 3000000").classes("text-gray-700 text-xl shadow-xl")
             url = 'http://127.0.0.1:8080/view_event'
             ui.button('view', on_click=lambda: ui.navigate.to(url))

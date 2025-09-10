@@ -10,8 +10,6 @@ from pages.welcome import show_welcome_page
 app.add_static_files("/Assets", "Assets")
 
 
-
-
 @ui.page("/")
 def home_page():
     show_header()

@@ -9,4 +9,7 @@ def show_view_page():
         ui.label("Category: Furniture").classes("text-xl")
         ui.label("Description: A single mordern sofa with plush cushions-Elastic silky fiber fabric. Available in different colors. Gentle on skin and sutable for every place being it office,hall or bedroom. very good for elderlys that needs a good rest time." \
         "visit shop for a 50% discount ").classes("text-grey-600 text-xl")
+        ui.button("Buy Item").classes("w-full self-center")
+        url = 'http://127.0.0.1:8080/'
+        ui.button('Exit', on_click=lambda: ui.navigate.to(url)).classes("self-center")
         
