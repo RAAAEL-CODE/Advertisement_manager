@@ -23,24 +23,12 @@ def show_home_page():
                     # ui.button('Delete').classes("bg-black text-white px-4 py-2 rounded-lg")
 
         # Products
-<<<<<<< HEAD
         for product in json_data["data"]:
             product_card(product["id"], product["flyer"], product["title"], f"Price: GHC {product["price"]}")
-=======
-        product_card("Assets/furniture-5966893_1280.jpg", "Single Sofa", "Price: GHC 1000")
-        product_card("Assets/the-last-shirt-1510597_1280.jpg", "Euro Shirt", "Price: GHC 150")
-        product_card("Assets/fashion-6203956_1280.jpg", "Gown", "Price: GHC 5000")
-        product_card("Assets/water-bottle-898332_1280.jpg", "Water-bottle", "Price: GHC 50")
-        product_card("Assets/travel-bag-4326732_1280.jpg", "Travel Bag", "Price: GHC 700")
-        product_card("Assets/vehicle-2132360_1280.jpg", "1987 Vintage car", "Price: GHC 3000000")
-        product_card("Assets/bag-1052370_1280.jpg", "Ladies Bag", "Price: GHC 400")
-        product_card("Assets/chairs-2181960_1280.jpg", "Dining Table Set", "Price: GHC 3000")
-        product_card("Assets/mug-5161566_1280.jpg", "Mug", "Price: GHC 80")
-        product_card("Assets/bedroom-5772286_1280.jpg","Bed","Price: GHC 5000")
-        product_card("Assets/mercedes-3417100_1280.jpg","Mercedes","Price:GHS 6000000")
+
+
         
 
         
 
->>>>>>> d491f139069116fda0296719f1ef1f5e04aa8cfb
                                   
