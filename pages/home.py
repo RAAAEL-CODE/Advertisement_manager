@@ -123,10 +123,11 @@
 
                                         
 from nicegui import ui
+import os
 
 def show_home_page():
     with ui.grid().classes(
-        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full p-6 gap-8"
+        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full p-6 gap-8 bg-[#e3d5ca]"
     ):
         def product_card(image, title, price):
             with ui.column().classes("items-center bg-white rounded-xl shadow-lg p-4 hover:shadow-2xl transition"):
@@ -152,4 +153,10 @@ def show_home_page():
         product_card("Assets/bag-1052370_1280.jpg", "Ladies Bag", "Price: GHC 400")
         product_card("Assets/chairs-2181960_1280.jpg", "Dining Table Set", "Price: GHC 3000")
         product_card("Assets/mug-5161566_1280.jpg", "Mug", "Price: GHC 80")
+        product_card("Assets/bedroom-5772286_1280.jpg","Bed","Price: GHC 5000")
+        product_card("Assets/mercedes-3417100_1280.jpg","Mercedes","Price:GHS 6000000")
+        
+
+        
+
                                   
