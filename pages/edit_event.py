@@ -2,7 +2,7 @@ from nicegui import ui
 
 def show_edit_event_page():
     with ui.column().classes(
-        'max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6'
+        "max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6 bg-[#e3d5ca]" 
     ):
         # Title
         ui.label('EDIT YOUR ADVERT HERE').classes(
