@@ -37,7 +37,7 @@ def show_add_event_page():
     """
     Displays the form for creating a new advert.
     """
-    with ui.column().classes('max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6'):
+    with ui.column().classes('max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6' ):
         ui.label('CREATE A NEW ADVERT').classes('font-extrabold text-4xl tracking-wide text-center text-gray-800')
 
         title = ui.input('Title').props('outlined').classes('w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500')

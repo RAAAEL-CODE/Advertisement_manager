@@ -35,4 +35,4 @@ def edit_event_page():
 
 
 
-ui.run()
+ui.run(tailwind="[bg-e3d5ca]")

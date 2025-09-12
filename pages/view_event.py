@@ -12,7 +12,7 @@ def show_view_page(id):
         response = requests.delete(f"{base_url}/adverts/{id}")
         if response.status_code == 200:
             ui.navigate.to("/")
-
+    
     with ui.card().classes("w-full h-full sm:w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 bg-white rounde-xl shadow-lg mt-24"):
         ui.image(advert["flyer"]).classes("w-full h-full rounded-lg mb-4 shadow-xl transition-transform duration-300 hover:scale-110")
         ui.label(advert["title"]).classes("text-xl font-semibold")
@@ -24,4 +24,4 @@ def show_view_page(id):
         with ui.grid(columns=2).classes("items-center justify-center self-center"):    
             ui.button('Exit', on_click=lambda: ui.navigate.to(url)).classes("bg-black w-[200px] text-white px-4 py-2 rounded-lg")
             ui.button('Delete', on_click=delete_advert).classes("bg-black w-[200px] text-white px-4 py-2 rounded-lg ")
-        
+            
