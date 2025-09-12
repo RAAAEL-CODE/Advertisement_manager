@@ -19,9 +19,11 @@ def show_view_page(id):
         ui.label(f"price:ghc {advert["price"]}").classes("text-gray-700 text-xl shadow-xl")
         ui.label(f"Category: {advert["category"]}").classes("text-xl")
         ui.label(f'Description: {advert["description"]}').classes("text-grey-600 text-xl")
-        ui.button("Buy Item").classes("w-full self-center bg-black")
-        url = 'http://127.0.0.1:8080/'
-        with ui.grid(columns=2).classes("items-center justify-center self-center"):    
+
+        ui.button("Edit",on_click=lambda: ui.navigate.to('http://127.0.0.1:8080/edit_event')).classes("w-full self-center bg-black")
+       
+        with ui.grid(columns=2).classes("items-center justify-center self-center"): 
+            url = 'http://127.0.0.1:8080/'   
             ui.button('Exit', on_click=lambda: ui.navigate.to(url)).classes("bg-black w-[200px] text-white px-4 py-2 rounded-lg")
             ui.button('Delete', on_click=delete_advert).classes("bg-black w-[200px] text-white px-4 py-2 rounded-lg ")
             

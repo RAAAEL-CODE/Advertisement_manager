@@ -1,52 +1,61 @@
-from nicegui import ui 
+
+from nicegui import ui, events
+import requests
+from utils.api import base_url
+
+flyer_content = None
+
+def edit_event(data, files):
+    response = requests.post(f'{base_url}/adverts/{'adverts_id'}', data=data, files=files)
+    print(response.json())
+    return response
+
+def handle_flyer_upload(e: events.UploadEventArguments):
+    global flyer_content
+    flyer_content = ('flyer.jpg', e.content.read(), 'image/jpeg')
+    ui.notify('File uploaded successfully')
 
 def show_edit_event_page():
     with ui.column().classes(
-        "max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6 bg-[#e3d5ca]" 
-    ):
-        # Title
-        ui.label('EDIT YOUR ADVERT HERE').classes(
-            'font-extrabold text-4xl tracking-wide text-center text-gray-800'
-        )
-
-        # Title input
-        ui.input('Title').props('outlined').classes(
-            'w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500'
-        )
-
+        'max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6'):
         
-        ui.textarea('Item Description').props('outlined').classes(
-            'w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500'
-        )
+        ui.label('EDIT ADVERT HERE').classes(
+            'font-extrabold text-4xl tracking-wide text-center text-gray-800')
 
-        # Price
-        ui.number('Price').props('outlined').classes(
-            'w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500'
-        )
+        title = ui.input('Title').props('outlined').classes('w-full')
+        description = ui.textarea('Item Description').props('outlined').classes('w-full')
+        price = ui.number('Price').props('outlined').classes('w-full')
 
-        # Categories
         ui.label('Categories').classes('font-medium text-gray-700')
-        ui.select(
+        categories = ui.select(
             ['CLOTHINGS', 'TUMBLERS', 'CARS', 'FURNITURE']
-        ).classes("w-full rounded-lg").props('outlined')
+        ).props('outlined').classes('w-full')
 
-        # Upload
         ui.label('Upload image').classes('font-medium text-gray-700')
-        ui.upload(
-            on_upload=lambda e: ui.notify(f'Uploaded'),
-            on_rejected=lambda: ui.notify('Rejected!'),
-            max_file_size=5_000_000
-        ).classes('w-full rounded-lg border border-dashed border-gray-400 p-4')
+        flyer = ui.upload(on_upload=handle_flyer_upload).classes(
+            'w-full rounded-lg border border-dashed border-gray-400 p-4')
 
-        # Submit button
         def submit():
-            ui.notify(f'Add Submitted Successfully')
+            global flyer_content
+            ad_data = {
+                'title': title.value,
+                'description': description.value,
+                'price': price.value,
+                'category': categories.value,
+            }
+            response = edit_event(ad_data, files={'flyer': flyer_content})
+            if response.status_code == 200:
+                ui.notify('Ad submitted successfully!')
+            else:
+                ui.notify(f'Failed: {response.text}')
 
         ui.button('Submit', on_click=submit).classes(
             'mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md w-full'
         )
+
         def delete():
-            ui.notify(f'Deleted Successfully')
+            ui.notify('Deleted Successfully')
+
         ui.button('Delete', on_click=delete).classes(
-            'mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md w-full'
+            'mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md w-full'
         )
