@@ -17,11 +17,11 @@ def show_view_page(id):
         ui.image(advert["flyer"]).classes("w-full h-full rounded-lg mb-4 shadow-xl transition-transform duration-300 hover:scale-110")
         ui.label(advert["title"]).classes("text-xl font-semibold")
         ui.label(f"price:ghc {advert["price"]}").classes("text-gray-700 text-xl shadow-xl")
-        ui.label("Category: Furniture").classes("text-xl")
-        ui.label("Description: A single mordern sofa with plush cushions-Elastic silky fiber fabric. Available in different colors. Gentle on skin and sutable for every place being it office,hall or bedroom. very good for elderlys that needs a good rest time." \
-        "visit shop for a 50% discount ").classes("text-grey-600 text-xl")
-        ui.button("Buy Item").classes("w-full self-center")
+        ui.label(f"Category: {advert["category"]}").classes("text-xl")
+        ui.label(f'Description: {advert["description"]}').classes("text-grey-600 text-xl")
+        ui.button("Buy Item").classes("w-full self-center bg-black")
         url = 'http://127.0.0.1:8080/'
-        ui.button('Exit', on_click=lambda: ui.navigate.to(url)).classes("self-center")
-        ui.button('Delete', on_click=delete_advert).classes("bg-black text-white px-4 py-2 rounded-lg")
+        with ui.grid(columns=2).classes("items-center justify-center self-center"):    
+            ui.button('Exit', on_click=lambda: ui.navigate.to(url)).classes("bg-black w-[200px] text-white px-4 py-2 rounded-lg")
+            ui.button('Delete', on_click=delete_advert).classes("bg-black w-[200px] text-white px-4 py-2 rounded-lg ")
         
