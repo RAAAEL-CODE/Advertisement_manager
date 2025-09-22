@@ -14,6 +14,7 @@ def handle_flyer_upload(e: events.UploadEventArguments):
     flyer_content = ('flyer.jpg', e.content.read(), 'image/jpeg')
     ui.notify('File uploaded successfully')
 
+
 def show_add_event_page():
     with ui.column().classes(
         'max-w-2xl mx-auto mt-24 p-8 rounded-2xl shadow-2xl bg-white space-y-6'):
@@ -27,7 +28,7 @@ def show_add_event_page():
 
         ui.label('Categories').classes('font-medium text-gray-700')
         categories = ui.select(
-            ['CLOTHINGS', 'TUMBLERS', 'CARS', 'FURNITURE']
+            ['Clothing', 'TUMBLERS', 'CARS', 'FURNITURE']
         ).props('outlined').classes('w-full')
 
         ui.label('Upload image').classes('font-medium text-gray-700')

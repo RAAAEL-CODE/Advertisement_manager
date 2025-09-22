@@ -20,7 +20,7 @@ def home_page():
 @ui.page("/add_event")
 def add_event_page():
     show_header()
-    show_add_event_page()
+    show_add_event_page()                                                               
 
 @ui.page("/view_event")
 def view_event_page(id=""):
@@ -28,11 +28,12 @@ def view_event_page(id=""):
     show_view_page(id)
 
 @ui.page("/edit_event")
-def edit_event_page():
+def edit_event_page(id: str):
     show_header()
-    show_edit_event_page()
+    show_edit_event_page(id)
 
 
 
 
 ui.run(tailwind="[bg-e3d5ca]")
+
