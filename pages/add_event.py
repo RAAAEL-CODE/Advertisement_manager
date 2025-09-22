@@ -22,18 +22,18 @@ def show_add_event_page():
         ui.label('CREATE A NEW ADVERT').classes(
             'font-extrabold text-4xl tracking-wide text-center text-gray-800')
 
-        title = ui.input('Title').props('outlined').classes('w-full')
-        description = ui.textarea('Item Description').props('outlined').classes('w-full')
-        price = ui.number('Price').props('outlined').classes('w-full')
+        title = ui.input('Title').props('outlined').classes('w-[600px]')
+        description = ui.textarea('Item Description').props('outlined').classes('w-[600px]')
+        price = ui.number('Price').props('outlined').classes('w-[600px]')
 
         ui.label('Categories').classes('font-medium text-gray-700')
         categories = ui.select(
             ['Clothing', 'TUMBLERS', 'CARS', 'FURNITURE']
-        ).props('outlined').classes('w-full')
+        ).props('outlined').classes('w-[600px]')
 
         ui.label('Upload image').classes('font-medium text-gray-700')
         flyer = ui.upload(on_upload=handle_flyer_upload).classes(
-            'w-full rounded-lg border border-dashed border-gray-400 p-4')
+            'w-[600px] rounded-lg border border-dashed border-gray-400 p-4')
 
         def submit():
             global flyer_content

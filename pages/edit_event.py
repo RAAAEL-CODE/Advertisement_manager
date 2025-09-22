@@ -63,15 +63,15 @@ def show_edit_event_page(advert_id):
     with ui.column().classes('max-w-2xl mx-auto mt-12 p-8 rounded-2xl shadow-2xl bg-white space-y-6') as edit_page:
         ui.label(f'EDIT ADVERT: {ad.get("title")}').classes('font-extrabold text-3xl text-center text-gray-800')
 
-        title = ui.input('Title', value=ad.get('title')).props('outlined').classes('w-full')
-        description = ui.textarea('Item Description', value=ad.get('description')).props('outlined').classes('w-full')
-        price = ui.number('Price', value=ad.get('price')).props('outlined').classes('w-full')
+        title = ui.input('Title', value=ad.get('title')).props('outlined').classes('w-[600px]')
+        description = ui.textarea('Item Description', value=ad.get('description')).props('outlined').classes('w-[600px]')
+        price = ui.number('Price', value=ad.get('price')).props('outlined').classes('w-[600px]')
         categories = ui.select(
             ['Clothing', 'Tumblers', 'Cars', 'Funiture', 'Bags'], value=ad.get('category')
-        ).props('outlined').classes('w-full')
+        ).props('outlined').classes('w-[600px]')
 
         ui.label('Upload new image (optional)').classes('font-medium text-gray-700')
-        flyer = ui.upload(on_upload=handle_flyer_upload).classes('w-full rounded-lg border border-dashed border-gray-400 p-4')
+        flyer = ui.upload(on_upload=handle_flyer_upload).classes('w-[600px] rounded-lg border border-dashed border-gray-400 p-4')
 
         def save_changes():
             """Saves the changes to the advert by calling the update API."""
