@@ -20,7 +20,7 @@ def show_view_page(id):
         ui.label(f"Category: {advert["category"]}").classes("text-xl")
         ui.label(f'Description: {advert["description"]}').classes("text-grey-600 text-xl")
 
-        ui.button("Edit",on_click=lambda: ui.navigate.to(f'/edit_event?id={id}')).classes("w-full self-center bg-black")
+        ui.button("Edit",on_click=lambda: ui.navigate.to(f'/vendor/edit_event?advert_id={id}')).classes("w-full self-center bg-black")
         
         with ui.grid(columns=2).classes("items-center justify-center self-center"): 
             url = 'http://127.0.0.1:8080/' 
