@@ -42,10 +42,10 @@ def show_signup_page():
 
             form_container = ui.column().classes("space-y-4 w-full")
             ui.label("Already have an account?").classes(
-                "text-sm text-gray-600 text-center"
+                "text-sm text-gray-600 text-center items-center"
             )
             ui.link("Sign in", "/signin").classes(
-                "text-sm text-black font-bold hover:underline text-center"
+                "text-sm text-black font-bold hover:underline text-center items-center"
             )
 
             def render_form():
