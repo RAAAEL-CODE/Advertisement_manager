@@ -11,6 +11,8 @@ def show_header():
         with ui.row().classes("flex-1 justify-evenly"):
             ui.link("Home", "/").classes("no-underline text-white hover:text-gray-300")
             ui.link("Create Advert", "/vendor/add_event").classes("no-underline text-white hover:text-gray-300")
-            ui.link("Edit Advert", "/vendor/edit_event").classes("no-underline text-white hover:text-gray-300")
+            ui.link("signin", "/signin").classes("no-underline text-white hover:text-gray-300")
             ui.link("", "/view_event").classes("no-underline text-white hover:text-gray-300")
+            ui.link("signup", "/signup").classes("no-underline text-white hover:text-gray-300")
+
             
