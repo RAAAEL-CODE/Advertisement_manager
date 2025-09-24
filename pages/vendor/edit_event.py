@@ -2,15 +2,10 @@ from nicegui import ui, app
 import requests
 import traceback
 import json
+from components.sidebar import show_sidebar
 
 from components.sidebar import show_sidebar
 base_url = 'https://advertisement-api-0myf.onrender.com'
-
-
-
-
-
-
 
 # A global variable to hold the content of the uploaded file.
 flyer_content = None
@@ -56,6 +51,7 @@ def handle_flyer_upload(e):
 # --- UI PAGES ---
 @ui.page("/vendor/edit_event")
 def show_edit_event_page(advert_id):
+    show_sidebar()
     
     """Displays the form to edit an existing advert."""
     global flyer_content
@@ -70,7 +66,7 @@ def show_edit_event_page(advert_id):
 
     with ui.row().classes("w-full"):
         with ui.column().classes("w-[20%]"):
-            show_sidebar()
+            pass
         with ui.column().classes("w-[80%]"):
             with ui.column().classes('max-w-2xl mx-auto mt-12 p-8 rounded-2xl shadow-2xl bg-white space-y-6') as edit_page:
                 ui.label(f'EDIT ADVERT: {ad.get("title")}').classes('font-extrabold text-3xl text-center text-gray-800')
@@ -83,7 +79,7 @@ def show_edit_event_page(advert_id):
                 ).props('outlined').classes('w-full')
 
                 ui.label('Upload new image (optional)').classes('font-medium text-gray-700')
-                flyer = ui.upload(on_upload=handle_flyer_upload).classes('w-full rounded-lg border border-dashed border-gray-400 p-4')
+                flyer = ui.upload(on_upload=handle_flyer_upload).classes('w-full rounded-lg border border-dashed border-gray-400 p-4').props("color=black")
 
                 def save_changes():
                     """Saves the changes to the advert by calling the update API."""
@@ -127,5 +123,5 @@ def show_edit_event_page(advert_id):
                     
                     flyer_content = None
 
-                ui.button('Save Changes', on_click=save_changes).classes('w-full mt-4 bg-green-500 hover:bg-green-600')
-                ui.button('Cancel', on_click=lambda: ui.navigate.to('/')).props('flat').classes('w-full mt-2 text-gray-600')
+                ui.button('Save Changes', on_click=save_changes).classes('w-full mt-4 bg-green-500 hover:bg-green-600').props("color=black")
+                ui.button('Cancel', on_click=lambda: ui.navigate.to('/')).props('flat').classes('w-full mt-2 text-gray-600').props("color=black")
