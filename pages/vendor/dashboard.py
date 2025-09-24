@@ -1,5 +1,18 @@
 from nicegui import ui
 from components.sidebar import show_sidebar
+import requests
+from utils.api import base_url
+
+
+def delete_advert(advert_id: str):
+    """Delete an advert and refresh dashboard."""
+    response = requests.delete(f"{base_url}/adverts/{advert_id}")
+    if response.status_code == 200:
+        ui.notify("Advert deleted successfully!", type="positive")
+        ui.navigate.to("/pages/vendor/dashboard")
+    else:
+        ui.notify(f"Failed to delete advert: {response.status_code}", type="negative")
+
 
 @ui.page("/pages/vendor/dashboard")
 def vendor_dashboard():
@@ -11,9 +24,6 @@ def vendor_dashboard():
             # Header with button
             with ui.row().classes('justify-between items-center w-full'):
                 ui.label('Welcome, RAEEL-Vendor!').classes('text-3xl font-bold text-gray-800')
-                ui.button('➕ Post New Advert').classes(
-                    'bg-black text-white ml-auto px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-200'
-                )
 
             # Summary cards
             with ui.row().classes('w-full gap-6'):
@@ -54,17 +64,27 @@ def vendor_dashboard():
 
             with ui.row().classes('w-full gap-6 flex-wrap'):
 
-                def advert_card(title, category, views):
+                def advert_card(advert):
                     with ui.card().classes('w-72 p-4'):
-                        ui.image('https://via.placeholder.com/300x150').classes('w-full h-32 rounded mb-4')
-                        ui.label(title).classes('text-lg font-semibold text-gray-800')
-                        ui.label(f'Category: {category}').classes('text-sm text-gray-600')
-                        ui.label(f'Views: {views}').classes('text-sm text-gray-600 mb-2')
+                        ui.image(advert.get("flyer_url", "https://via.placeholder.com/300x150")).classes('w-full h-32 rounded mb-4')
+                        ui.label(advert.get("title", "Untitled")).classes('text-lg font-semibold text-gray-800')
+                        ui.label(f'Category: {advert.get("category", "N/A")}').classes('text-sm text-gray-600')
+                        ui.label(f'Views: {advert.get("views", 0)}').classes('text-sm text-gray-600 mb-2')
                         with ui.row().classes('justify-between'):
-                            ui.button('Edit').classes('bg-black text-white px-3 py-1 rounded hover:bg-gray-800')
-                            ui.button('Delete').classes('bg-black text-white px-3 py-1 rounded hover:bg-gray-800')
+                            ui.button(
+                                "Edit",
+                                on_click=lambda advert_id=advert["id"]: ui.navigate.to(f'/vendor/edit_event/{advert_id}')
+                            ).classes("bg-black text-white px-4 py-2 rounded-lg")
+                            ui.button(
+                                "Delete",
+                                on_click=lambda advert_id=advert["id"]: delete_advert(advert_id)
+                            ).classes("bg-black text-white px-4 py-2 rounded-lg")
 
-                advert_card('Advert 1', 'Electronics', 450)
-                advert_card('Advert 2', 'Fashion', 310)
-                advert_card('Advert 3', 'Furniture', 120)
-
+                # Fetch adverts dynamically from API
+                response = requests.get(f"{base_url}/adverts")
+                if response.status_code == 200:
+                    adverts = response.json().get("data", [])
+                    for ad in adverts:
+                        advert_card(ad)
+                else:
+                    ui.label("Failed to load adverts").classes("text-red-600")
