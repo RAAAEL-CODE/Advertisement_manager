@@ -1,4 +1,4 @@
-from nicegui import ui
+from nicegui import ui,app
+
 def show_sidebar():
-    ui.label("Sidebar goes here")
-    
+    ui.label("Side bar goes here")
