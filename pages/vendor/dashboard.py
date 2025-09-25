@@ -1,4 +1,3 @@
-# In pages/vendor/dashboard.py
 from nicegui import ui
 from components.sidebar import show_sidebar
 
@@ -41,6 +40,7 @@ def vendor_dashboard():
                     'name': 'Adverts',
                     'type': 'pie',
                     'radius': '50%',
+                    'center':['40%','50%'],
                     'data': [
                         {'value': 6, 'name': 'Electronics'},
                         {'value': 4, 'name': 'Fashion'},
@@ -82,7 +82,7 @@ def vendor_dashboard():
                     ui.label(f'Category: {category}').classes('text-sm text-gray-600')
                     ui.label(f'Views: {views}').classes('text-sm text-gray-600 mb-2')
                     with ui.row().classes('justify-between'):
-                        ui.button('Edit',on_click=lambda: ui.navigate.to("/vendor/edit_event")).classes('bg-black text-white px-3 py-1 rounded hover:bg-gray-800')
+                        ui.button('Edit',on_click=lambda: ui.navigate.to(f"/vendor/edit_event?advert_id={id}")).classes('bg-black text-white px-3 py-1 rounded hover:bg-gray-800')
                         ui.button('Delete').classes('bg-black text-white px-3 py-1 rounded hover:bg-gray-800')
 
             # Example adverts

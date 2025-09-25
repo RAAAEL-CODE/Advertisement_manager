@@ -7,6 +7,8 @@ from pages.vendor.dashboard import*
 from pages.vendor.add_event import *
 from pages.vendor.edit_event import *
 from pages.vendor.events import *
+from pages.vendor.billing import * 
+from pages.vendor.support import *
 from pages.signin import *
 from pages.signup import *
 

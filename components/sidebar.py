@@ -23,10 +23,15 @@ def show_sidebar():
         # All links are inside this single drawer context.
         ui.link('Dashboard', '/vendor/dashboard').classes('flex items-center p-3 hover:bg-gray-200 text-black rounded-lg').props('style="text-decoration: none;"')
         ui.link('Create New Advert', '/vendor/add_event').classes('flex items-center p-3 hover:bg-gray-200 text-black rounded-lg').props('style="text-decoration: none;"')
-        ui.link('Payments / Billing', '/billing').classes('flex items-center text-black p-3 hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
+        #ui.link('Payments / Billing', '/billing').classes('flex items-center text-black p-3 hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
+        ui.link('Payments / Billing', '/vendor/billing').classes('flex items-center text-black p-3 hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
         ui.separator()
         ui.link('Notifications', '/notifications').classes('flex items-center p-3 hover:bg-gray-200 text-black rounded-lg').props('style="text-decoration: none;"')
         ui.link('Support / Help', '/support').classes('flex items-center text-black p-3 hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
         ui.separator()
         ui.link('Home', '/').classes('flex items-center p-3 text-black hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
-        ui.link('Logout', '/logout').classes('flex items-center text-black p-3 text-red-600 hover:bg-red-100 rounded-lg').props('style="text-decoration: none;"')
+        #ui.link('Logout', '/logout').classes('flex items-center text-black p-3 text-red-600 hover:bg-red-100 rounded-lg').props('style="text-decoration: none;"')
+        def logout():
+            ui.navigate.to('/signin')
+
+        ui.button('Logout', on_click=logout).classes('flex items-center text-black p-3 text-red-600 hover:bg-red-100 rounded-lg w-full').props('flat style="text-decoration: none;"')
