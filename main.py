@@ -21,11 +21,11 @@ def home_page():
     show_home_page()
     
                                                             
-@ui.page("/view_event")
+@ui.page("/view_event") 
 def view_event_page(id=""):
     show_header()
     show_view_page(id)
 
 
-ui.run(tailwind="[bg-e3d5ca]")
+ui.run(storage_secret='Raael advertisement website created, vetted and approved by FDA')
 
