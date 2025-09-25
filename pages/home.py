@@ -42,15 +42,14 @@ events_data = []
 def show_home_page():
     global events_data
 
-    # Fetch data only once
-    if not events_data:
-        try:
-            response = requests.get(f"{base_url}/adverts")
-            response.raise_for_status()  # Raise an exception for bad status codes
-            events_data = response.json()["data"]
-        except requests.exceptions.RequestException as e:
-            ui.notify(f"Failed to fetch events: {e}", type="negative")
-            events_data = []
+    # Fetch data every time the page is loaded
+    try:
+        response = requests.get(f"{base_url}/adverts")
+        response.raise_for_status()  # Raise an exception for bad status codes
+        events_data = response.json()["data"] # Update the global variable with fresh data
+    except requests.exceptions.RequestException as e:
+        ui.notify(f"Failed to fetch events: {e}", type="negative")
+        events_data = []
 
     # UI layout for the home page
     with ui.row().classes("w-full items-center"):
@@ -86,10 +85,10 @@ def show_home_page():
                     for event in filtered_events:
                         product_card(event["id"], event["flyer"], event["title"], f"Price: GHC {event["price"]}")
 
-        # The grid container for the event cards
-        events_grid = ui.grid().classes(
-            "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full p-6 gap-8 bg-[#e3d5ca]"
-        )
+    # The grid container for the event cards
+    events_grid = ui.grid().classes(
+        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full p-6 gap-8 bg-[#e3d5ca]"
+    )
 
     # Function to create an individual product card
     def product_card(id, image, title, price):
@@ -102,4 +101,3 @@ def show_home_page():
 
     # Initial display of all events
     display_events()
-

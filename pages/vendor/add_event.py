@@ -94,9 +94,4 @@ def show_add_event_page():
             .props("color=black")
         )
 
-        def delete():
-            ui.notify("Deleted Successfully")
-
-        ui.button("Delete", on_click=delete).classes(
-            "mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md w-full"
-        ).props("color=black")
+        
