@@ -97,7 +97,7 @@ def show_home_page():
             ui.label(title).classes("mt-4 text-2xl font-semibold text-center")
             ui.label(price).classes("text-gray-700 text-lg shadow-sm")
             with ui.row().classes("gap-3 mt-4 flex-wrap justify-center"):
-                ui.button('View', on_click=partial(ui.navigate.to, f"/view_event?id={id}")).classes("bg-black text-white px-4 py-2 rounded-lg")
+                ui.button('View', on_click=partial(ui.navigate.to, f"view_event/{id}")).classes("bg-black text-white px-4 py-2 rounded-lg")
 
     # Initial display of all events
     display_events()

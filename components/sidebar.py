@@ -77,7 +77,7 @@ def show_sidebar():
         ui.link('Notifications', '/notifications').classes('flex items-center p-3 hover:bg-gray-200 text-black rounded-lg').props('style="text-decoration: none;"')
         ui.link('Support / Help', '/support').classes('flex items-center text-black p-3 hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
         ui.separator()
-        ui.link('Home', '/').classes('flex items-center p-3 text-black hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
+        ui.link('Home', '/home').classes('flex items-center p-3 text-black hover:bg-gray-200 rounded-lg').props('style="text-decoration: none;"')
         
         def logout():
             # Clear user storage on logout
