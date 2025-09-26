@@ -4,7 +4,6 @@ from utils.api import base_url
 
 
 current_image_index = 0
-
 _signup_btn: ui.button = None
 
 
@@ -20,7 +19,7 @@ async def _signup(data):
     if response.status_code == 200:
         return ui.navigate.to("/signin")
     elif response.status_code == 409:
-        return ui.notify(message="user already exists!", type="warning")
+        return ui.notify(message="User already exists!", type="warning")
 
 
 @ui.page("/signup")
@@ -35,7 +34,6 @@ def show_signup_page():
             "Assets/Black  and White Modern Car Sale Facebook Post.png",
         ]
 
-        # Initialize the background image and timer.
         ui.query("body").style(
             f'background-image: url("{background_images[current_image_index]}");'
             "background-size: cover;"
@@ -54,7 +52,7 @@ def show_signup_page():
         ui.timer(5, change_background)
 
     with ui.column().classes("min-h-screen w-full items-center justify-center"):
-        with ui.card().classes("w-full max-w-xl p-8  shadow-lg rounded-xl"):
+        with ui.card().classes("w-full max-w-xl p-8 shadow-lg rounded-xl"):
             ui.label("Sign Up with").classes(
                 "text-4xl font-bold mb-6 items-center self-center"
             )
@@ -62,12 +60,33 @@ def show_signup_page():
                 "text-4xl font-bold items-center text-blue self-center"
             )
 
-            # Select button (dropdown)
-            register = ui.radio(["Consumer", "Vendor"], value="Consumer").classes(
-                "w-full flex flex-row"
-            )
+            ui.label("Choose your role:").classes("text-lg mb-4 font-semibold")
+
+            role = {"value": None}  # store selected role
+
+            with ui.row().classes("gap-8 items-center justify-center mb-6 ml-20"):
+                # Consumer card
+                with ui.card().classes(
+                    "cursor-pointer w-20 items-center p-4 hover:shadow-lg"
+                ).props("flat bordered") as consumer_card:
+                    ui.icon("person", size="20px", color="green").classes(
+                        "p-4 rounded-full bg-green-100"
+                    )
+                    ui.label("Consumer").classes("font-bold")
+                    consumer_card.on("click", lambda _: select_role("Consumer"))
+
+                # Vendor card
+                with ui.card().classes(
+                    "cursor-pointer w-20 items-center p-4 hover:shadow-lg"
+                ).props("flat bordered") as vendor_card:
+                    ui.icon("store", size="20px", color="blue").classes(
+                        "p-4 rounded-full bg-blue-100"
+                    )
+                    ui.label("Vendor").classes("font-bold")
+                    vendor_card.on("click", lambda _: select_role("Vendor"))
 
             form_container = ui.column().classes("space-y-4 w-full")
+
             ui.label("Already have an account?").classes(
                 "text-sm text-gray-600 text-center items-center"
             )
@@ -75,9 +94,13 @@ def show_signup_page():
                 "text-sm text-black font-bold hover:underline text-center items-center"
             )
 
+            def select_role(selected):
+                role["value"] = selected
+                render_form()
+
             def render_form():
                 form_container.clear()
-                if register.value == "Consumer":
+                if role["value"] == "Consumer":
                     with form_container:
                         name = ui.input("User Name").classes("w-full").props("outlined")
                         email = (
@@ -105,8 +128,8 @@ def show_signup_page():
                                     "role": "Consumer",
                                 }
                             ),
-                        ).classes("w-full")
-                else:
+                        ).classes("w-full bg-black")
+                elif role["value"] == "Vendor":
                     with form_container:
                         name = (
                             ui.input(placeholder="Business Name")
@@ -118,9 +141,9 @@ def show_signup_page():
                             .props("type=email outlined")
                             .classes("w-full")
                         )
-                        Location = (
+                        location = (
                             ui.input(placeholder="Business Location")
-                            .props("type=location outlined")
+                            .props("outlined")
                             .classes("w-full")
                         )
                         password = (
@@ -132,19 +155,17 @@ def show_signup_page():
                             .props("type=password outlined")
                             .classes("w-full")
                         )
-
                         _signup_btn = ui.button(
                             "Sign Up",
                             on_click=lambda: _signup(
                                 {
                                     "username": name.value,
                                     "email": email.value,
-                                    "location": Location.value,
+                                    "location": location.value,
                                     "password": password.value,
                                     "role": "Vendor",
                                 }
                             ),
-                        ).classes("w-full")
+                        ).classes("w-full bg-black")
 
             render_form()
-            register.on_value_change(lambda e: render_form())
